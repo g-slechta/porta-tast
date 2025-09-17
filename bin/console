@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+// application.php
+
+require dirname(__DIR__).'/vendor/autoload.php';
+
+use App\Command\UserTransformCommand;
+use App\Config\ProjectFileSystem;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+$projectFileSystem = new ProjectFileSystem(dirname(__DIR__));
+
+
+$application->add(new UserTransformCommand($projectFileSystem));
+$application->run();
